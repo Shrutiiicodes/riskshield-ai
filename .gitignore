@@ -1,53 +1,11 @@
-# Python
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
+*.pyc
+.pytest_cache/
+.streamlit/
 *.egg-info/
-.installed.cfg
-*.egg
 
-# Virtual Environment
-venv/
-env/
-ENV/
-.venv
-
-# Jupyter Notebooks
-.ipynb_checkpoints
-*/.ipynb_checkpoints/*
-
-# Data & Models (Large binaries)
-data/processed/*.csv
-evaluation/reports/*.joblib
-evaluation/reports/*.csv
-evaluation/reports/*.png
-evaluation/reports/*.json
-
-# IDEs & Editors
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Logs & Temp files
-*.log
-scratch/
-.env
+# Generated data & reports (regenerate via run_pipeline.py) -- kept out of
+# version control but INCLUDED in the shipped zip so the project works
+# out-of-the-box without a pipeline run.
+# data/processed/
+# evaluation/reports/
