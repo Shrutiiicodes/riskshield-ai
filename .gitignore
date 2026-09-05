@@ -1,11 +1,50 @@
+# Python & Bytecode
 __pycache__/
-*.pyc
-.pytest_cache/
-.streamlit/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
 *.egg-info/
+.installed.cfg
+*.egg
 
-# Generated data & reports (regenerate via run_pipeline.py) -- kept out of
-# version control but INCLUDED in the shipped zip so the project works
-# out-of-the-box without a pipeline run.
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Testing & Cache
+.pytest_cache/
+.coverage
+htmlcov/
+.streamlit/
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# IDEs & OS Files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+*.log
+.env
+scratch/
+
+# Generated data & reports (regenerate via run_pipeline.py)
 # data/processed/
 # evaluation/reports/

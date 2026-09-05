@@ -117,7 +117,7 @@ def main():
     train_df["risk_score"] = fuse_risk(train_df["ml_score"], train_df["anomaly_score"], train_df["network_risk_score"], weights)
 
     best_t, best_val_cost, cost_sweep = find_optimal_threshold(val_df["label"], val_df["risk_score"])
-    print(f"  Optimal threshold (min expected cost on val set): {best_t:.2f}  (val cost ₹{best_val_cost:,})")
+    print(f"  Optimal threshold (min expected cost on val set): {best_t:.2f}  (val cost INR {best_val_cost:,})")
 
     # -----------------------------------------------------------------
     # 7. Evaluate on held-out TEST set
@@ -144,8 +144,8 @@ def main():
 
     print(f"  Precision: {clf_metrics['precision']:.3f}  Recall: {clf_metrics['recall']:.3f}  "
           f"F1: {clf_metrics['f1']:.3f}  PR-AUC: {clf_metrics['pr_auc']:.3f}")
-    print(f"  Expected total cost (fused model): ₹{cost_metrics['total_expected_cost_inr']:,}")
-    print(f"  Expected total cost (ML-only baseline): ₹{baseline_cost['total_expected_cost_inr']:,}")
+    print(f"  Expected total cost (fused model): INR {cost_metrics['total_expected_cost_inr']:,}")
+    print(f"  Expected total cost (ML-only baseline): INR {baseline_cost['total_expected_cost_inr']:,}")
     print(f"  Cost reduction vs ML-only baseline: {cost_reduction_pct}%")
 
     # -----------------------------------------------------------------

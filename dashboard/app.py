@@ -144,8 +144,8 @@ elif page == "Investigation":
 
     st.markdown("### Why was it flagged?")
     for r in reasons:
-        st.progress(min(1.0, abs(r["contribution"]) / (max(abs(v) for v in contrib.values()) + 1e-9)),
-                    text=f"**{r['description']}**  (SHAP contribution: {r['contribution']:+.3f})")
+        val = float(min(1.0, abs(r["contribution"]) / (max(abs(v) for v in contrib.values()) + 1e-9)))
+        st.progress(val, text=f"**{r['description']}**  (SHAP contribution: {r['contribution']:+.3f})")
 
     cluster_info = None
     if row.get("cluster_id", 0) and row["cluster_id"] > 0:

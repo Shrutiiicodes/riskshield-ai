@@ -12,38 +12,38 @@
     "anomaly": 0.2,
     "network": 0.2
   },
-  "optimal_threshold": 0.29,
+  "optimal_threshold": 0.33,
   "classification_metrics": {
-    "precision": 0.9457,
+    "precision": 0.9621,
     "recall": 0.9652,
-    "f1": 0.9554,
-    "roc_auc": 0.9966,
-    "pr_auc": 0.9819
+    "f1": 0.9637,
+    "roc_auc": 0.9967,
+    "pr_auc": 0.9823
   },
   "operational_metrics": {
     "true_positives": 610,
-    "false_positives": 35,
-    "true_negatives": 9046,
+    "false_positives": 24,
+    "true_negatives": 9057,
     "false_negatives": 22,
-    "false_positive_rate": 0.0039,
+    "false_positive_rate": 0.0026,
     "false_negative_rate": 0.0348,
-    "alerts_per_1000_txns": 66.41
+    "alerts_per_1000_txns": 65.27
   },
   "cost_analysis": {
     "cost_per_false_positive": 100,
     "cost_per_false_negative": 2000,
-    "expected_fp_cost_inr": 3500,
+    "expected_fp_cost_inr": 2400,
     "expected_fn_cost_inr": 44000,
-    "total_expected_cost_inr": 47500
+    "total_expected_cost_inr": 46400
   },
   "baseline_ml_only_cost_analysis": {
     "cost_per_false_positive": 100,
     "cost_per_false_negative": 2000,
     "expected_fp_cost_inr": 19500,
-    "expected_fn_cost_inr": 32000,
-    "total_expected_cost_inr": 51500
+    "expected_fn_cost_inr": 36000,
+    "total_expected_cost_inr": 55500
   },
-  "cost_reduction_vs_ml_only_baseline_pct": 7.77,
+  "cost_reduction_vs_ml_only_baseline_pct": 16.4,
   "ring_detection_metrics": {
     "clusters_found": 42,
     "cluster_precision": 1.0,
@@ -52,190 +52,190 @@
   },
   "sample_investigations": [
     {
-      "transaction_id": "TXN_cc5d98221a",
+      "transaction_id": "TXN_4650a2b4f9",
       "amount": 3606.45,
-      "risk_score": 0.9974696834863355,
+      "risk_score": 0.997466345626228,
       "risk_level": "CRITICAL",
       "ground_truth_label": 1,
       "ground_truth_scenario": "abuse_ring",
       "evidence_reasons": [
         {
           "feature": "ip_shared_flag",
-          "contribution": 5.3976,
+          "contribution": 5.1348,
           "description": "IP address is shared across multiple customer accounts"
         },
         {
           "feature": "amount_dev_ratio",
-          "contribution": 4.6961,
+          "contribution": 4.9973,
           "description": "amount is 6.2x this customer's historical average"
         },
         {
-          "feature": "ip_customer_count",
-          "contribution": 0.9269,
-          "description": "ip_customer_count = 8"
+          "feature": "device_shared_flag",
+          "contribution": 0.6073,
+          "description": "device is shared across multiple customer accounts"
         },
         {
-          "feature": "amount_zscore_merchant",
-          "contribution": 0.6474,
-          "description": "amount_zscore_merchant = 10.27932069806718"
+          "feature": "ip_customer_count",
+          "contribution": 0.6071,
+          "description": "ip_customer_count = 8"
         }
       ],
-      "investigation_summary": "This transaction (\u20b93606) was flagged with a risk score of 1.00 (CRITICAL). Key contributing signals: IP address is shared across multiple customer accounts; amount is 6.2x this customer's historical average; ip_customer_count = 8. The associated device/IP is part of a network of 40 accounts, consistent with coordinated abuse rather than an isolated incident. 15 related transactions were found for this customer/device/IP cluster within the recent window.",
+      "investigation_summary": "This transaction (\u20b93606) was flagged with a risk score of 1.00 (CRITICAL). Key contributing signals: IP address is shared across multiple customer accounts; amount is 6.2x this customer's historical average; device is shared across multiple customer accounts. The associated device/IP is part of a network of 40 accounts, consistent with coordinated abuse rather than an isolated incident. 15 related transactions were found for this customer/device/IP cluster within the recent window.",
       "agent_recommended_action": "recommend_hold",
       "agent_confidence": 0.99,
       "policy_final_action": "recommend_hold",
       "policy_reason": "Risk tier 'CRITICAL' maps to 'recommend_hold'."
     },
     {
-      "transaction_id": "TXN_4745f56817",
+      "transaction_id": "TXN_8331c6ee22",
       "amount": 3802.13,
-      "risk_score": 0.9952840304699129,
+      "risk_score": 0.9952721691456026,
       "risk_level": "CRITICAL",
       "ground_truth_label": 1,
       "ground_truth_scenario": "abuse_ring",
       "evidence_reasons": [
         {
           "feature": "ip_shared_flag",
-          "contribution": 5.2908,
+          "contribution": 4.9089,
           "description": "IP address is shared across multiple customer accounts"
         },
         {
           "feature": "amount_dev_ratio",
-          "contribution": 4.1455,
+          "contribution": 4.1529,
           "description": "amount is 28.7x this customer's historical average"
         },
         {
-          "feature": "ip_customer_count",
-          "contribution": 0.9267,
-          "description": "ip_customer_count = 5"
-        },
-        {
           "feature": "historical_chargebacks",
-          "contribution": 0.8699,
+          "contribution": 0.7266,
           "description": "3 prior chargebacks on this account"
-        }
-      ],
-      "investigation_summary": "This transaction (\u20b93802) was flagged with a risk score of 1.00 (CRITICAL). Key contributing signals: IP address is shared across multiple customer accounts; amount is 28.7x this customer's historical average; ip_customer_count = 5. The associated device/IP is part of a network of 40 accounts, consistent with coordinated abuse rather than an isolated incident. 25 related transactions were found for this customer/device/IP cluster within the recent window.",
-      "agent_recommended_action": "recommend_hold",
-      "agent_confidence": 0.99,
-      "policy_final_action": "recommend_hold",
-      "policy_reason": "Risk tier 'CRITICAL' maps to 'recommend_hold'."
-    },
-    {
-      "transaction_id": "TXN_fe4af7298b",
-      "amount": 3322.7,
-      "risk_score": 0.9883463811770044,
-      "risk_level": "CRITICAL",
-      "ground_truth_label": 1,
-      "ground_truth_scenario": "abuse_ring",
-      "evidence_reasons": [
-        {
-          "feature": "ip_shared_flag",
-          "contribution": 4.8939,
-          "description": "IP address is shared across multiple customer accounts"
-        },
-        {
-          "feature": "amount_dev_ratio",
-          "contribution": 3.979,
-          "description": "amount is 5.8x this customer's historical average"
-        },
-        {
-          "feature": "ip_customer_count",
-          "contribution": 0.8232,
-          "description": "ip_customer_count = 8"
-        },
-        {
-          "feature": "historical_chargebacks",
-          "contribution": 0.7636,
-          "description": "2 prior chargebacks on this account"
-        },
-        {
-          "feature": "seconds_since_prev_txn",
-          "contribution": 0.5765,
-          "description": "only 4020s since the customer's previous transaction"
-        }
-      ],
-      "investigation_summary": "This transaction (\u20b93323) was flagged with a risk score of 0.99 (CRITICAL). Key contributing signals: IP address is shared across multiple customer accounts; amount is 5.8x this customer's historical average; ip_customer_count = 8. The associated device/IP is part of a network of 40 accounts, consistent with coordinated abuse rather than an isolated incident. 15 related transactions were found for this customer/device/IP cluster within the recent window.",
-      "agent_recommended_action": "recommend_hold",
-      "agent_confidence": 0.99,
-      "policy_final_action": "recommend_hold",
-      "policy_reason": "Risk tier 'CRITICAL' maps to 'recommend_hold'."
-    },
-    {
-      "transaction_id": "TXN_57179a6554",
-      "amount": 2385.71,
-      "risk_score": 0.987996648584947,
-      "risk_level": "CRITICAL",
-      "ground_truth_label": 1,
-      "ground_truth_scenario": "abuse_ring",
-      "evidence_reasons": [
-        {
-          "feature": "ip_shared_flag",
-          "contribution": 3.8163,
-          "description": "IP address is shared across multiple customer accounts"
-        },
-        {
-          "feature": "amount_dev_ratio",
-          "contribution": 3.6605,
-          "description": "amount is 6.6x this customer's historical average"
-        },
-        {
-          "feature": "seconds_since_prev_txn",
-          "contribution": 1.3762,
-          "description": "only 219s since the customer's previous transaction"
-        },
-        {
-          "feature": "velocity_5min",
-          "contribution": 1.0673,
-          "description": "2 transactions in the last 5 minutes"
-        },
-        {
-          "feature": "historical_chargebacks",
-          "contribution": 0.8406,
-          "description": "2 prior chargebacks on this account"
-        }
-      ],
-      "investigation_summary": "This transaction (\u20b92386) was flagged with a risk score of 0.99 (CRITICAL). Key contributing signals: IP address is shared across multiple customer accounts; amount is 6.6x this customer's historical average; only 219s since the customer's previous transaction. The associated device/IP is part of a network of 40 accounts, consistent with coordinated abuse rather than an isolated incident. 20 related transactions were found for this customer/device/IP cluster within the recent window.",
-      "agent_recommended_action": "recommend_hold",
-      "agent_confidence": 0.99,
-      "policy_final_action": "recommend_hold",
-      "policy_reason": "Risk tier 'CRITICAL' maps to 'recommend_hold'."
-    },
-    {
-      "transaction_id": "TXN_bc2581f933",
-      "amount": 3185.69,
-      "risk_score": 0.9872797535703361,
-      "risk_level": "CRITICAL",
-      "ground_truth_label": 1,
-      "ground_truth_scenario": "abuse_ring",
-      "evidence_reasons": [
-        {
-          "feature": "ip_shared_flag",
-          "contribution": 5.3591,
-          "description": "IP address is shared across multiple customer accounts"
-        },
-        {
-          "feature": "amount_dev_ratio",
-          "contribution": 4.1858,
-          "description": "amount is 5.0x this customer's historical average"
-        },
-        {
-          "feature": "ip_customer_count",
-          "contribution": 0.9421,
-          "description": "ip_customer_count = 8"
-        },
-        {
-          "feature": "historical_chargebacks",
-          "contribution": 0.8039,
-          "description": "2 prior chargebacks on this account"
         },
         {
           "feature": "device_shared_flag",
-          "contribution": 0.461,
+          "contribution": 0.6692,
           "description": "device is shared across multiple customer accounts"
         }
       ],
-      "investigation_summary": "This transaction (\u20b93186) was flagged with a risk score of 0.99 (CRITICAL). Key contributing signals: IP address is shared across multiple customer accounts; amount is 5.0x this customer's historical average; ip_customer_count = 8. The associated device/IP is part of a network of 40 accounts, consistent with coordinated abuse rather than an isolated incident. 11 related transactions were found for this customer/device/IP cluster within the recent window.",
+      "investigation_summary": "This transaction (\u20b93802) was flagged with a risk score of 1.00 (CRITICAL). Key contributing signals: IP address is shared across multiple customer accounts; amount is 28.7x this customer's historical average; 3 prior chargebacks on this account. The associated device/IP is part of a network of 40 accounts, consistent with coordinated abuse rather than an isolated incident. 25 related transactions were found for this customer/device/IP cluster within the recent window.",
+      "agent_recommended_action": "recommend_hold",
+      "agent_confidence": 0.99,
+      "policy_final_action": "recommend_hold",
+      "policy_reason": "Risk tier 'CRITICAL' maps to 'recommend_hold'."
+    },
+    {
+      "transaction_id": "TXN_6ddb1c8a29",
+      "amount": 3322.7,
+      "risk_score": 0.9883446526423059,
+      "risk_level": "CRITICAL",
+      "ground_truth_label": 1,
+      "ground_truth_scenario": "abuse_ring",
+      "evidence_reasons": [
+        {
+          "feature": "ip_shared_flag",
+          "contribution": 4.7928,
+          "description": "IP address is shared across multiple customer accounts"
+        },
+        {
+          "feature": "amount_dev_ratio",
+          "contribution": 4.1805,
+          "description": "amount is 5.8x this customer's historical average"
+        },
+        {
+          "feature": "device_shared_flag",
+          "contribution": 0.5756,
+          "description": "device is shared across multiple customer accounts"
+        },
+        {
+          "feature": "historical_chargebacks",
+          "contribution": 0.5709,
+          "description": "2 prior chargebacks on this account"
+        },
+        {
+          "feature": "ip_customer_count",
+          "contribution": 0.5138,
+          "description": "ip_customer_count = 8"
+        }
+      ],
+      "investigation_summary": "This transaction (\u20b93323) was flagged with a risk score of 0.99 (CRITICAL). Key contributing signals: IP address is shared across multiple customer accounts; amount is 5.8x this customer's historical average; device is shared across multiple customer accounts. The associated device/IP is part of a network of 40 accounts, consistent with coordinated abuse rather than an isolated incident. 15 related transactions were found for this customer/device/IP cluster within the recent window.",
+      "agent_recommended_action": "recommend_hold",
+      "agent_confidence": 0.99,
+      "policy_final_action": "recommend_hold",
+      "policy_reason": "Risk tier 'CRITICAL' maps to 'recommend_hold'."
+    },
+    {
+      "transaction_id": "TXN_8615780e25",
+      "amount": 2385.71,
+      "risk_score": 0.9879963505617231,
+      "risk_level": "CRITICAL",
+      "ground_truth_label": 1,
+      "ground_truth_scenario": "abuse_ring",
+      "evidence_reasons": [
+        {
+          "feature": "ip_shared_flag",
+          "contribution": 3.884,
+          "description": "IP address is shared across multiple customer accounts"
+        },
+        {
+          "feature": "amount_dev_ratio",
+          "contribution": 3.5119,
+          "description": "amount is 6.6x this customer's historical average"
+        },
+        {
+          "feature": "velocity_5min",
+          "contribution": 1.2293,
+          "description": "2 transactions in the last 5 minutes"
+        },
+        {
+          "feature": "seconds_since_prev_txn",
+          "contribution": 1.18,
+          "description": "only 219s since the customer's previous transaction"
+        },
+        {
+          "feature": "historical_chargebacks",
+          "contribution": 0.6557,
+          "description": "2 prior chargebacks on this account"
+        }
+      ],
+      "investigation_summary": "This transaction (\u20b92386) was flagged with a risk score of 0.99 (CRITICAL). Key contributing signals: IP address is shared across multiple customer accounts; amount is 6.6x this customer's historical average; 2 transactions in the last 5 minutes. The associated device/IP is part of a network of 40 accounts, consistent with coordinated abuse rather than an isolated incident. 20 related transactions were found for this customer/device/IP cluster within the recent window.",
+      "agent_recommended_action": "recommend_hold",
+      "agent_confidence": 0.99,
+      "policy_final_action": "recommend_hold",
+      "policy_reason": "Risk tier 'CRITICAL' maps to 'recommend_hold'."
+    },
+    {
+      "transaction_id": "TXN_9978f825b1",
+      "amount": 3185.69,
+      "risk_score": 0.9872762965009392,
+      "risk_level": "CRITICAL",
+      "ground_truth_label": 1,
+      "ground_truth_scenario": "abuse_ring",
+      "evidence_reasons": [
+        {
+          "feature": "ip_shared_flag",
+          "contribution": 5.1564,
+          "description": "IP address is shared across multiple customer accounts"
+        },
+        {
+          "feature": "amount_dev_ratio",
+          "contribution": 4.1984,
+          "description": "amount is 5.0x this customer's historical average"
+        },
+        {
+          "feature": "device_shared_flag",
+          "contribution": 0.6352,
+          "description": "device is shared across multiple customer accounts"
+        },
+        {
+          "feature": "historical_chargebacks",
+          "contribution": 0.6015,
+          "description": "2 prior chargebacks on this account"
+        },
+        {
+          "feature": "ip_customer_count",
+          "contribution": 0.5776,
+          "description": "ip_customer_count = 8"
+        }
+      ],
+      "investigation_summary": "This transaction (\u20b93186) was flagged with a risk score of 0.99 (CRITICAL). Key contributing signals: IP address is shared across multiple customer accounts; amount is 5.0x this customer's historical average; device is shared across multiple customer accounts. The associated device/IP is part of a network of 40 accounts, consistent with coordinated abuse rather than an isolated incident. 11 related transactions were found for this customer/device/IP cluster within the recent window.",
       "agent_recommended_action": "recommend_hold",
       "agent_confidence": 0.99,
       "policy_final_action": "recommend_hold",
